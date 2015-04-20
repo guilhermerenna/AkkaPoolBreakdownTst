@@ -43,7 +43,7 @@ public class ArtificeCreatureApp {
 		ActorRef creature1 = creatureSystem.actorOf(
 				Props.create(CreatureActor.class), "creature1");
 		
-		ActorSelection selection = creatureSystem.actorSelection("akka.tcp://ArtificeSystem@10.0.122.248:2552/user/cactus1");
+		ActorSelection selection = creatureSystem.actorSelection("akka.tcp://ArtificeSystem@10.1.1.1:2552/user/cactus1");
 		
 		Thread.sleep(500);
 		
