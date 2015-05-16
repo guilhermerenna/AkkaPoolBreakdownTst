@@ -1,4 +1,4 @@
-package artificeCluster;
+package typedActorsCluster;
 
 public class FruitActorImpl implements FruitActor {
 
