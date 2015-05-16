@@ -1,0 +1,13 @@
+<html>
+<head><title>Typed Actors Artifice Akka Cluster</title></head>
+<body bgcolor="#000000" text="#FFFFFF"><h1>Typed Actors Artifice Akka Cluster</h1>
+
+<p>
+    This test case represents the 4th step towards Artifice distribution through Actors Model.
+</p>
+
+<p>
+    An homogenous cluster is built with N backend nodes, each with M creatures, M fruits, M cacti.
+</p>
+</body>
+</html>
