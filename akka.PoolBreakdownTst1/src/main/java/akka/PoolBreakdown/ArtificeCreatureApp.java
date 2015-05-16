@@ -7,6 +7,7 @@ import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
 import Stimuli.*;
+import Creature.*;
 import akka.actor.ActorRef;
 import akka.actor.ActorSelection;
 import akka.actor.ActorSystem;
@@ -43,7 +44,7 @@ public class ArtificeCreatureApp {
 		ActorRef creature1 = creatureSystem.actorOf(
 				Props.create(CreatureActor.class), "creature1");
 		
-		ActorSelection selection = creatureSystem.actorSelection("akka.tcp://ArtificeSystem@10.0.2.47:2552/user/cactus1");
+		ActorSelection selection = creatureSystem.actorSelection("akka.tcp://ArtificeSystem@127.0.0.1:2552/user/cactus1");
 		
 		Thread.sleep(500);
 		
