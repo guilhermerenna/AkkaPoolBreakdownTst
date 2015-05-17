@@ -1,0 +1,13 @@
+<html>
+<head><title>Frontend-Backend Artifice Akka Cluster Model</title></head>
+<body bgcolor="#000000" text="#FFFFFF"><h1>Frontend-Backend Artifice Akka Cluster Model</h1>
+
+<p>
+    This test case represents the 3rd step towards Artifice distribution through Actors Model.
+</p>
+
+<p>
+    A cluster is composed of a Frontend and a few backend nodes. The settings are imported from a .conf file.
+</p>
+</body>
+</html>

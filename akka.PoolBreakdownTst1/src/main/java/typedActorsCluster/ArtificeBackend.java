@@ -26,6 +26,14 @@ public class ArtificeBackend extends UntypedActor {
 
             getSender().tell("created", ref);
 
+        } else if (o.equals("createCactus")) {
+            f = TypedActor.get(context().system()).typedActorOf(new TypedProps<CactusActorImpl>(CactusActor.class, CactusActorImpl.class), (name + ".cactus"));
+
+            // Recupera um ActorRef para o Proxy (UntypedActor)
+            ActorRef ref = TypedActor.get(context().system()).getActorRefFor(f);
+
+            getSender().tell("created", ref);
+
         }
     }
 }
