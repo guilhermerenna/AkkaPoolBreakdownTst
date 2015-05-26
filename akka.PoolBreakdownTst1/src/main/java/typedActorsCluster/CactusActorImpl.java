@@ -4,6 +4,7 @@ public class CactusActorImpl implements CactusActor {
 
     private int x;
     private int y;
+    private int z;
 
     public CactusActorImpl() {
         this.x = (int) (Math.random() * 10);
@@ -39,5 +40,7 @@ public class CactusActorImpl implements CactusActor {
     public int getYPosition() {
         return this.y;
     }
+
+    public int getZPosition() { return this.z; }
 
 }
