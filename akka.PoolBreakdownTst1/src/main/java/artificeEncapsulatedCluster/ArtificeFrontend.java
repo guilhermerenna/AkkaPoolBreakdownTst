@@ -1,4 +1,4 @@
-package typedActorsCluster;
+package artificeEncapsulatedCluster;
 
 import akka.actor.*;
 

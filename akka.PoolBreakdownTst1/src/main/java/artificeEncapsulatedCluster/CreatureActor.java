@@ -1,4 +1,4 @@
-package typedActorsCluster;
+package artificeEncapsulatedCluster;
 
 import Creature.EyeActor;
 import Creature.MouthActor;

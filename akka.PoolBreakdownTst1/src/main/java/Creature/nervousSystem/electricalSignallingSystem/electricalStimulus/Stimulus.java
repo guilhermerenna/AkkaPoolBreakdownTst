@@ -1,5 +1,6 @@
 package Creature.nervousSystem.electricalSignallingSystem.electricalStimulus;
 
+import Creature.nervousSystem.electricalSignallingSystem.CurrentStimulus;
 import akka.actor.ActorRef;
 
 import java.util.UUID;
@@ -26,7 +27,7 @@ public abstract class Stimulus {
     private CurrentStimulus currentStimulus;
 
     /**  */
-    private ObjectSequentialNumber target;
+    private ActorRef target;
 
     /**  true = appetitive ; false = aversive */
     private boolean stimulusValence;
@@ -43,8 +44,8 @@ public abstract class Stimulus {
      * @param shape Forma
      * @param target Identificador do componente receptor
      */
-    public Stimulus(ObjectSequentialNumber emmiter,
-                    CurrentStimulus current, ObjectSequentialNumber target,
+    public Stimulus(ActorRef emmiter,
+                    CurrentStimulus current, ActorRef target,
                     int intensity) {
 
         setIntensity(intensity);
@@ -61,8 +62,8 @@ public abstract class Stimulus {
      * @param shape Forma
      * @param target Identificador do componente receptor
      */
-    public Stimulus(ObjectSequentialNumber emmiter,
-                    CurrentStimulus current, ObjectSequentialNumber target) {
+    public Stimulus(ActorRef emmiter,
+                    CurrentStimulus current, ActorRef target) {
 
         setIntensity(INITIAL_INTENSITY);
         setEmitterComponent(emmiter);
@@ -80,7 +81,7 @@ public abstract class Stimulus {
      * @param shape Forma
      * @param target Identificador do componente receptor
      */
-    public Stimulus(ObjectSequentialNumber emmiter, ObjectSequentialNumber target) {
+    public Stimulus(ActorRef emmiter, ActorRef target) {
 
         setIntensity(INITIAL_INTENSITY);
         setEmitterComponent(emmiter);
@@ -94,9 +95,9 @@ public abstract class Stimulus {
      */
     public Stimulus() {
         setIntensity(INITIAL_INTENSITY);
-        setEmitterComponent(new ObjectSequentialNumber());
+        setEmitterComponent(null);
         setCurrentStimulus(new CurrentStimulus());
-        setTarget(new ObjectSequentialNumber());
+        setTarget(null);
         setHash(UUID.randomUUID());
     }
 
@@ -112,7 +113,7 @@ public abstract class Stimulus {
      * Recupera o valor de emitterComponent
      * @return emitterComponent
      */
-    public ObjectSequentialNumber getEmitterComponent() {
+    public ActorRef getEmitterComponent() {
         return emitterComponent;
     }
 
@@ -120,7 +121,7 @@ public abstract class Stimulus {
      * Define o valor de emmiterComponent
      * @param emitterComponent Novo valor de emitterComponent
      */
-    public void setEmitterComponent(ObjectSequentialNumber emitterComponent) {
+    public void setEmitterComponent(ActorRef emitterComponent) {
         this.emitterComponent = emitterComponent;
     }
 
@@ -152,7 +153,7 @@ public abstract class Stimulus {
      * Recupera o valor de target
      * @return target
      */
-    public ObjectSequentialNumber getTarget() {
+    public ActorRef getTarget() {
         return target;
     }
 
@@ -160,7 +161,7 @@ public abstract class Stimulus {
      * Define o valor de target
      * @param target Novo valor de target
      */
-    public void setTarget(ObjectSequentialNumber target) {
+    public void setTarget(ActorRef target) {
         this.target = target;
     }
 

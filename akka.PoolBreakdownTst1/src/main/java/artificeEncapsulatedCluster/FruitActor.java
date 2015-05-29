@@ -1,4 +1,4 @@
-package typedActorsCluster;
+package artificeEncapsulatedCluster;
 
 public interface FruitActor {
     int getXPosition();
