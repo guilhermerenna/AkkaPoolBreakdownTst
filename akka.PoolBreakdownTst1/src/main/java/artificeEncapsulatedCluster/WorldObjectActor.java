@@ -1,8 +1,10 @@
 package artificeEncapsulatedCluster;
 
+import Creature.nervousSystem.electricalSignallingSystem.electricalStimulus.Stimulus;
 import akka.actor.ActorRef;
 import akka.actor.UntypedActor;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -68,11 +70,15 @@ public class WorldObjectActor extends UntypedActor implements WorldComponent {
     // TODO: check the consequences of the setEnvSharedPool(...) removal
     // public void setEnvSharedPool(EnvironmentalStimuliPool envSharedPool) { this.envSharedPool = envSharedPool; }
 
+    public void setRemove(boolean remove) {
+        // TODO: avisar ao resto do cluster (via mensagem) que este ator foi removido
+    }
+
     /**
      * @return the 'remove'
      */
     public boolean isRemove() {
-        return remove;
+        return remove;/* TODO: remover essa flag e implementar o setRemove por mensagem */
     }
 
     // TODO: check the consequences of the setRemove(...) removal
@@ -90,6 +96,7 @@ public class WorldObjectActor extends UntypedActor implements WorldComponent {
      * @return the stimuli
      */
     public LuminousStimulus getMyStimulus() {
+        /* TODO: Checar como é feito e importar */
         return myStimulus;
     }
 
@@ -106,6 +113,18 @@ public class WorldObjectActor extends UntypedActor implements WorldComponent {
      */
     @Override
     public void onReceive(Object o) throws Exception {
+
+    }
+
+    public ArrayList<Stimulus> feelStimuli() {
+        return null;
+    }
+
+    public ArrayList<Stimulus> changeState(ArrayList<Stimulus> feltStimuli) {
+        return null;
+    }
+
+    public void sendStimuli(ArrayList<Stimulus> producedStimuli) {
 
     }
 }

@@ -1,6 +1,6 @@
 package artificeEncapsulatedCluster;
 
-public class CactusActorImpl implements CactusActor {
+public class CactusActorImpl implements CactusActor extends WorldObjectActor {
 
     private int x;
     private int y;
