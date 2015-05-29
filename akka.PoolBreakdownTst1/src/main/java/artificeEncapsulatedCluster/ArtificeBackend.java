@@ -1,17 +1,14 @@
 package artificeEncapsulatedCluster;
 
-import akka.actor.ActorRef;
-import akka.actor.TypedActor;
-import akka.actor.TypedProps;
-import akka.actor.UntypedActor;
+import akka.actor.*;
 
 /**
  * Created by artifice on 24/04/15.
  */
 public class ArtificeBackend extends UntypedActor {
     private String name;
-    private FruitActor f;
-    private CactusActor b;
+    //private FruitActor f;
+    //private CactusActorImpl b;
 
     public ArtificeBackend(String name) {
         this.name = name;
@@ -20,20 +17,14 @@ public class ArtificeBackend extends UntypedActor {
     @Override
     public void onReceive(Object o) throws Exception {
         if (o.equals("createFruit")) {
-            f = TypedActor.get(context().system()).typedActorOf(new TypedProps<FruitActorImpl>(FruitActor.class, FruitActorImpl.class), (name + ".fruit"));
+            ObjectSequentialNumber seq = ObjectSequentialNumber.getNextSuperKey();
 
-            // Recupera um ActorRef para o Proxy (UntypedActor)
-            ActorRef ref = TypedActor.get(context().system()).getActorRefFor(f);
-
-            getSender().tell("created", ref);
+            ActorRef fruit = context().actorOf(Props.create(FruitActorImpl.class, seq, 1, 1, 1), String.valueOf(seq.getKeySuper()));
 
         } else if (o.equals("createCactus")) {
-            b = TypedActor.get(context().system()).typedActorOf(new TypedProps<CactusActorImpl>(CactusActor.class, CactusActorImpl.class), (name + ".cactus"));
+            ObjectSequentialNumber seq = ObjectSequentialNumber.getNextSuperKey();
 
-            // Recupera um ActorRef para o Proxy (UntypedActor)
-            ActorRef ref = TypedActor.get(context().system()).getActorRefFor(f);
-
-            getSender().tell("created", ref);
+            ActorRef cactus = context().actorOf(Props.create(CactusActorImpl.class, seq, 1, 1, 1), String.valueOf(seq.getKeySuper()));
 
         }
     }

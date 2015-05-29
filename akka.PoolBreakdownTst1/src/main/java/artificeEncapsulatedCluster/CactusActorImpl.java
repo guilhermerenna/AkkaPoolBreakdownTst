@@ -1,17 +1,50 @@
 package artificeEncapsulatedCluster;
 
-public class CactusActorImpl implements CactusActor extends WorldObjectActor {
+import Creature.nervousSystem.electricalSignallingSystem.electricalStimulus.ShockStimulus;
+import Creature.nervousSystem.electricalSignallingSystem.electricalStimulus.Stimulus;
+import Creature.nervousSystem.electricalSignallingSystem.electricalStimulus.TouchStimulus;
+import Stimuli.StimulusMessage;
+import Stimuli.TouchStimulusMessage;
+import akka.actor.ActorSelection;
 
-    private int x;
-    private int y;
-    private int z;
 
-    public CactusActorImpl() {
-        this.x = (int) (Math.random() * 10);
-        this.y = (int) (Math.random() * 10);
+import java.util.ArrayList;
+import java.util.List;
+
+public class CactusActorImpl extends WorldObjectActor  {
+
+
+    public CactusActorImpl(ObjectSequentialNumber number, double x, double y, double z) {
+        super(number, x, y, z);
     }
 
-//	public CactusActorImpl(AtomicReference proxyVar, Function0 createInstance,
+    @Override
+    public void onReceive(Object o) throws Exception {
+        ArrayList<Stimulus> stimuli = (ArrayList) o;
+        ArrayList<Stimulus> produced = new ArrayList<Stimulus>();
+
+        for(Stimulus stimulus : stimuli) {
+            if(stimulus instanceof TouchStimulus) {
+                Stimulus spike = new ShockStimulus(getSequentialNumber(), stimulus.getEmitterComponent());
+                produced.add(spike);
+            }
+        }
+
+        sendStimuli(produced);
+    }
+
+    public void sendStimuli(List<Stimulus> stimuli) {
+        for(Stimulus stimulus : stimuli) {
+            //String s = "//creatures/1/1";
+
+            ActorSelection ref = context().system().actorSelection(String.format("akka.tcp://ArtificeSystem@127.0.0.1:2552/creatures/%d/%d",
+                    stimulus.getTarget().getKeySuper(), stimulus.getTarget().getSequential()));
+
+            ref.tell(stimulus, getSelf());
+        }
+    }
+
+    //	public CactusActorImpl(AtomicReference proxyVar, Function0 createInstance,
 //			Seq interfaces) {
 //		super(proxyVar, createInstance, interfaces);
 //		// TODO Auto-generated constructor stub
@@ -30,17 +63,6 @@ public class CactusActorImpl implements CactusActor extends WorldObjectActor {
 //		} else {
 //			throw new Exception("Message type not supported.");
 //		}
-//		
+//
 //	}
-
-    public int getXPosition() {
-        return this.x;
-    }
-
-    public int getYPosition() {
-        return this.y;
-    }
-
-    public int getZPosition() { return this.z; }
-
 }

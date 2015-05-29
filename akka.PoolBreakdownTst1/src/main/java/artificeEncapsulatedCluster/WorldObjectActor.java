@@ -10,11 +10,11 @@ import java.util.Random;
 /**
  * Created by lsi on 20/05/15.
  */
-public class WorldObjectActor extends UntypedActor implements WorldComponent {
+public abstract class WorldObjectActor extends UntypedActor {
     /**
      * Identifier of the object
      */
-    private ActorRef objectSuperKey;
+    private ObjectSequentialNumber sequentialNumber;
 
     /**
      * Auxiliary variables
@@ -33,7 +33,7 @@ public class WorldObjectActor extends UntypedActor implements WorldComponent {
      * Reference to artificial world. Used by objects that add new
      * world objects to the simulation.
      */
-    private ArtificialWorld artificialWorld;
+    //private ArtificialWorld artificialWorld;
 
 	/*TODO: check the consequences of the EnvStimuliPool removal */
     // private EnvStimuliPool env
@@ -42,89 +42,48 @@ public class WorldObjectActor extends UntypedActor implements WorldComponent {
      *  atributos visiveis deste componente e referencia para o pool da interface
      *  @deprecated
      */
-    private LuminousStimulus myStimulus;
+    //private LuminousStimulus myStimulus;
 
-    public WorldObject(/* TODO: remover: EnvironmentalStimuliPool envEstimulPool,*/ double positionX, double positionY, double positionZ) {
-
-        this.setRemove(false);
-        // TODO: check the consequences of the setEnvStimuliPool(...) removal
-        // this.setEnvSharedPool(envEstimulPool);
-        this.setObjectSuperKey(ObjectSequentialNumber.getNextSuperKey());
-        this.setPositionX(positionX);
-        this.setPositionY(positionY);
-        this.setPositionZ(positionZ);
+    public WorldObjectActor(ObjectSequentialNumber number, double positionX, double positionY, double positionZ) {
     }
 
-    public ActorRef getObjectSuperKey() {
-        return objectSuperKey;
+    public ObjectSequentialNumber getSequentialNumber() {
+        return sequentialNumber;
     }
 
-    public void setObjectSuperKey(ObjectSequentialNumber mySequentialNumber) {
-        this.objectSuperKey = mySequentialNumber;
+    public void setSequentialNumber(ObjectSequentialNumber sequentialNumber) {
+        this.sequentialNumber = sequentialNumber;
     }
 
+    public double getPositionX() {
+        return positionX;
+    }
 
-    // TODO: check the consequences of the getEnvSharedPool() removal
-    // public EnvironmentalStimuliPool getEnvSharedPool() { return envSharedPool; }
+    public void setPositionX(double positionX) {
+        this.positionX = positionX;
+    }
 
-    // TODO: check the consequences of the setEnvSharedPool(...) removal
-    // public void setEnvSharedPool(EnvironmentalStimuliPool envSharedPool) { this.envSharedPool = envSharedPool; }
+    public double getPositionY() {
+        return positionY;
+    }
+
+    public void setPositionY(double positionY) {
+        this.positionY = positionY;
+    }
+
+    public double getPositionZ() {
+        return positionZ;
+    }
+
+    public void setPositionZ(double positionZ) {
+        this.positionZ = positionZ;
+    }
+
+    public boolean isRemove() {
+        return remove;
+    }
 
     public void setRemove(boolean remove) {
-        // TODO: avisar ao resto do cluster (via mensagem) que este ator foi removido
-    }
-
-    /**
-     * @return the 'remove'
-     */
-    public boolean isRemove() {
-        return remove;/* TODO: remover essa flag e implementar o setRemove por mensagem */
-    }
-
-    // TODO: check the consequences of the setRemove(...) removal
-	/*
-	 * This method set the 'remove'
-	 * @param remove, is the new value
-	 */
-	/*public void setRemove(boolean remove) {
-		this.remove = remove;
-		setChanged();
-		notifyObservers();
-	}*/
-
-    /**
-     * @return the stimuli
-     */
-    public LuminousStimulus getMyStimulus() {
-        /* TODO: Checar como é feito e importar */
-        return myStimulus;
-    }
-
-
-
-
-
-
-
-    /**
-     * Substitui changeState
-     * @param o
-     * @throws Exception
-     */
-    @Override
-    public void onReceive(Object o) throws Exception {
-
-    }
-
-    public ArrayList<Stimulus> feelStimuli() {
-        return null;
-    }
-
-    public ArrayList<Stimulus> changeState(ArrayList<Stimulus> feltStimuli) {
-        return null;
-    }
-
-    public void sendStimuli(ArrayList<Stimulus> producedStimuli) {
-
+        this.remove = remove;
     }
 }
