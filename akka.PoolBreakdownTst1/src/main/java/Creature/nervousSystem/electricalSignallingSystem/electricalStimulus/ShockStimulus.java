@@ -64,5 +64,5 @@ public class ShockStimulus extends EnvironmentalStimulus {
 	 */
 	public ShockStimulus() {
 		super();
-	}
+	} 
 }
