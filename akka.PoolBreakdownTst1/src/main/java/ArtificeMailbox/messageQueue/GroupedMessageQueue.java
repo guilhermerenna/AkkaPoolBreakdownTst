@@ -1,10 +1,12 @@
-package ArtificeMailbox.messageQueue;
+package mailbox.messageQueue;
 
 import akka.actor.ActorRef;
 import akka.dispatch.Envelope;
 import akka.dispatch.MessageQueue;
-import ArtificeMailbox.MyUnboundedMessageQueueSemantics;
+import mailbox.MyUnboundedMessageQueueSemantics;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -21,38 +23,26 @@ public class GroupedMessageQueue implements MessageQueue,
     private final Queue<Envelope> queue =
             new ConcurrentLinkedQueue<Envelope>();
 
-    public void enqueue(ActorRef receiver, Envelope handle) {
+    private List<String> text = new ArrayList<String>();
 
+    public void enqueue(ActorRef receiver, Envelope handle) {
         if (handle.message() instanceof String) {
             String message = (String) handle.message();
-            if (message.equals("I")) {
-                I = message;
-            } else if (message.equals("am")) {
-                am = message;
-            } else if (message.equals("groot")) {
-                groot = message;
-            } else if (message.equals("hello")) {
-                hello = message;
-            } else if (message.equals("world")) {
-                world = message;
-            } else {
-                queue.offer(handle);
-            }
+            text.add((String) handle.message());
+            // System.out.println("text added: "+handle.message());
         } else {
             queue.offer(handle);
         }
     }
 
     public Envelope dequeue() {
-
-        if (!I.isEmpty() && !am.isEmpty() && !groot.isEmpty()) {
-            I = am = groot = "";
-            return new Envelope("You are groot", null);
-        } else if (!hello.isEmpty() && !world.isEmpty()){
-            hello = world = "";
-            return new Envelope("We have a different mailbox", null);
+        if(queue.isEmpty()) {
+            List<String> temp = text;
+            text = new ArrayList<String>();
+            // System.out.println("Dequeuing...");
+            return new Envelope(temp,null);
         }
-        return queue.poll();
+        else return queue.poll();
     }
 
     public int numberOfMessages() {

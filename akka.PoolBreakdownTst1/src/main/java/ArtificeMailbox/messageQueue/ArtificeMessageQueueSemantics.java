@@ -1,5 +1,5 @@
-package mailbox.messageQueue;
+package mailbox;
 
 // Marker interface used for mailbox requirements mapping
-public interface ArtificeMessageQueueSemantics {
+public interface MyUnboundedMessageQueueSemantics {
 }
