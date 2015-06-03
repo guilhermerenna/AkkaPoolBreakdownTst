@@ -13,6 +13,11 @@ public class CactusActor extends WorldObjectActor {
         super(number, x, y, z);
     }
 
+    /**
+     * Recebe um ArrayList com estímulos, processa, e retorna um ArrayList com outros estímulos.
+     * @param o
+     * @throws Exception
+     */
     @Override
     public void onReceive(Object o) throws Exception {
         ArrayList<Stimulus> stimuli = (ArrayList) o;
@@ -22,12 +27,8 @@ public class CactusActor extends WorldObjectActor {
             if (stimulus instanceof TouchStimulus) {
                 Stimulus spike = new ShockStimulus(getSequentialNumber(), stimulus.getEmitterComponent());
                 produced.add(spike);
-            } else if (stimulus instanceof LuminousStimulus) {
-                Stimulus luminous = new LuminousStimulus(getSequentialNumber(), stimulus.getEmitterComponent());
-                produced.add(luminous);
-            } else if (stimulus instanceof MechanicalStimulus) {
-                Stimulus mechanical = new MechanicalStimulus(getSequentialNumber(), stimulus.getEmitterComponent());
-                produced.add(mechanical);
+            } else {
+                // TODO: Faz alguma coisa se o estímulo for mecânico ou visual?
             }
         }
         sendStimuli(produced);

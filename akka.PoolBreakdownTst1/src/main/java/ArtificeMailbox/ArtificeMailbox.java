@@ -1,5 +1,6 @@
-package mailbox;
+package ArtificeMailbox;
 
+import ArtificeMailbox.messageQueue.StimuliMessageQueue;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.dispatch.Envelope;
@@ -10,20 +11,19 @@ import com.typesafe.config.Config;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Queue;
 
-import mailbox.messageQueue.GroupedMessageQueue;
 import scala.Option;
 
-public class MyUnboundedMailbox implements MailboxType,
-        ProducesMessageQueue<GroupedMessageQueue> {
+public class ArtificeMailbox implements MailboxType,
+        ProducesMessageQueue<StimuliMessageQueue> {
 
     // This constructor signature must exist, it will be called by Akka
-    public MyUnboundedMailbox(ActorSystem.Settings settings, Config config) {
-        System.out.println("Initializing Mailbox...");
+    public ArtificeMailbox(ActorSystem.Settings settings, Config config) {
+        // System.out.println("Initializing Mailbox...");
     }
 
     // The create method is called to create the MessageQueue
     public MessageQueue create(Option<ActorRef> owner, Option<ActorSystem> system) {
-        System.out.println("Creating GroupedMessageQueue...");
-        return new GroupedMessageQueue();
+        // System.out.println("Creating StimuliMessageQueue...");
+        return new StimuliMessageQueue();
     }
 }
