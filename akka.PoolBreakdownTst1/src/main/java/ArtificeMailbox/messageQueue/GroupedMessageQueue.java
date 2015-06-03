@@ -1,9 +1,8 @@
-package mailbox.messageQueue;
+package ArtificeMailbox.messageQueue;
 
 import akka.actor.ActorRef;
 import akka.dispatch.Envelope;
 import akka.dispatch.MessageQueue;
-import mailbox.MyUnboundedMessageQueueSemantics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class GroupedMessageQueue implements MessageQueue,
-        MyUnboundedMessageQueueSemantics {
+        ArtificeMessageQueueSemantics {
 
     private String hello = "";
     private String world = "";
