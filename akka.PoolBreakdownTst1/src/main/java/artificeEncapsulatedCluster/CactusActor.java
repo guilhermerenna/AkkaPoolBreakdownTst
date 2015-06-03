@@ -1,16 +1,15 @@
 package artificeEncapsulatedCluster;
 
-import Creature.nervousSystem.electricalSignallingSystem.electricalStimulus.ShockStimulus;
-import Creature.nervousSystem.electricalSignallingSystem.electricalStimulus.Stimulus;
-import Creature.nervousSystem.electricalSignallingSystem.electricalStimulus.TouchStimulus;
+import Creature.nervousSystem.electricalSignallingSystem.electricalStimulus.*;
 import akka.actor.ActorSelection;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FruitActorImpl extends WorldObjectActor {
+public class CactusActor extends WorldObjectActor {
 
-    public FruitActorImpl(ObjectSequentialNumber number, double x, double y, double z) {
+
+    public CactusActor(ObjectSequentialNumber number, double x, double y, double z) {
         super(number, x, y, z);
     }
 
@@ -23,9 +22,14 @@ public class FruitActorImpl extends WorldObjectActor {
             if (stimulus instanceof TouchStimulus) {
                 Stimulus spike = new ShockStimulus(getSequentialNumber(), stimulus.getEmitterComponent());
                 produced.add(spike);
+            } else if (stimulus instanceof LuminousStimulus) {
+                Stimulus luminous = new LuminousStimulus(getSequentialNumber(), stimulus.getEmitterComponent());
+                produced.add(luminous);
+            } else if (stimulus instanceof MechanicalStimulus) {
+                Stimulus mechanical = new MechanicalStimulus(getSequentialNumber(), stimulus.getEmitterComponent());
+                produced.add(mechanical);
             }
         }
-
         sendStimuli(produced);
     }
 

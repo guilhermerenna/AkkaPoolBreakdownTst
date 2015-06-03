@@ -3,7 +3,7 @@ package Creature.nervousSystem.electricalSignallingSystem;
 import akka.actor.ActorRef;
 
 /**
- * Created by lsi on 28/05/15.
+ * Created by lsi on 01/06/15.
  */
 public class Perception {
 
@@ -17,7 +17,7 @@ public class Perception {
     private double angle;
     private String actionTendency;
 
-    public Perception(){
+    public Perception() {
 
     }
 

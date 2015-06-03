@@ -1,6 +1,8 @@
 package artificeEncapsulatedCluster;
 
-import akka.actor.*;
+import akka.actor.ActorRef;
+import akka.actor.Props;
+import akka.actor.UntypedActor;
 
 /**
  * Created by artifice on 24/04/15.
@@ -8,7 +10,7 @@ import akka.actor.*;
 public class ArtificeBackend extends UntypedActor {
     private String name;
     //private FruitActor f;
-    //private CactusActorImpl b;
+    //private CactusActor b;
 
     public ArtificeBackend(String name) {
         this.name = name;
@@ -24,7 +26,7 @@ public class ArtificeBackend extends UntypedActor {
         } else if (o.equals("createCactus")) {
             ObjectSequentialNumber seq = ObjectSequentialNumber.getNextSuperKey();
 
-            ActorRef cactus = context().actorOf(Props.create(CactusActorImpl.class, seq, 1, 1, 1), String.valueOf(seq.getKeySuper()));
+            ActorRef cactus = context().actorOf(Props.create(CactusActor.class, seq, 1, 1, 1), String.valueOf(seq.getKeySuper()));
 
         }
     }

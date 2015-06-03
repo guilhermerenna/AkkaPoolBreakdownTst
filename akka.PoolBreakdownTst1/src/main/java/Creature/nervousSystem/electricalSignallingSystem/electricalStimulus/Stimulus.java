@@ -1,7 +1,6 @@
 package Creature.nervousSystem.electricalSignallingSystem.electricalStimulus;
 
 import Creature.nervousSystem.electricalSignallingSystem.CurrentStimulus;
-import akka.actor.ActorRef;
 import artificeEncapsulatedCluster.ObjectSequentialNumber;
 
 import java.util.UUID;
@@ -12,38 +11,38 @@ import java.util.UUID;
  * o estímulo corrente (currentStimulus), uma forma (shape), o identificador do componente receptor (target), o (weigth),
  * e de uma valência (stimulusValence).
  *
- * @author		Anderson Grandi Pires
- * @author		Bruno Andre Santos
- * @version		0.6.0, 09/24/05
+ * @author Anderson Grandi Pires
+ * @author Bruno Andre Santos
+ * @version 0.6.0, 09/24/05
  */
 public abstract class Stimulus {
 
+    /**
+     * Is the initial value of the intensity
+     */
+    public static final int INITIAL_INTENSITY = 1;
     /** */
     private int intensity;
-
     /** */
     private ObjectSequentialNumber emitterComponent;
-
     /** */
     private CurrentStimulus currentStimulus;
-
     /**  */
     private ObjectSequentialNumber target;
-
-    /**  true = appetitive ; false = aversive */
+    /**
+     * true = appetitive ; false = aversive
+     */
     private boolean stimulusValence;
-
     private UUID hash;
-    /** Is the initial value of the intensity */
-    public static final int INITIAL_INTENSITY = 1;
 
     /**
      * Construtor com parâmetros. Constroi um estímulo em estado integro.
+     *
      * @param intensity Intensidade do estímulo
-     * @param emmiter Identificador do componente emissor
-     * @param current Estímulo corrente
-     * @param shape Forma
-     * @param target Identificador do componente receptor
+     * @param emmiter   Identificador do componente emissor
+     * @param current   Estímulo corrente
+     * @param shape     Forma
+     * @param target    Identificador do componente receptor
      */
     public Stimulus(ObjectSequentialNumber emmiter,
                     CurrentStimulus current, ObjectSequentialNumber target,
@@ -58,10 +57,11 @@ public abstract class Stimulus {
 
     /**
      * Construtor com parâmetros. Constroi um estímulo em estado integro com valor de intensidade inicial igual a {@link Stimulus#INITIAL_INTENSITY}.
+     *
      * @param emmiter Identificador do componente emissor
      * @param current Estímulo corrente
-     * @param shape Forma
-     * @param target Identificador do componente receptor
+     * @param shape   Forma
+     * @param target  Identificador do componente receptor
      */
     public Stimulus(ObjectSequentialNumber emmiter,
                     CurrentStimulus current, ObjectSequentialNumber target) {
@@ -78,9 +78,9 @@ public abstract class Stimulus {
      * e com um uma nova instância de estímulo corrente.
      *
      * @param intensity Intensidade do estímulo
-     * @param emmiter Identificador do componente emissor
-     * @param shape Forma
-     * @param target Identificador do componente receptor
+     * @param emmiter   Identificador do componente emissor
+     * @param shape     Forma
+     * @param target    Identificador do componente receptor
      */
     public Stimulus(ObjectSequentialNumber emmiter, ObjectSequentialNumber target) {
 
@@ -104,6 +104,7 @@ public abstract class Stimulus {
 
     /**
      * Recupera o valor de currentStimulus
+     *
      * @return currentStimulus
      */
     public CurrentStimulus getCurrentStimulus() {
@@ -111,7 +112,17 @@ public abstract class Stimulus {
     }
 
     /**
+     * Define o valor de currentStimulus
+     *
+     * @param currentStimulus Novo valor de currentStimulus
+     */
+    public void setCurrentStimulus(CurrentStimulus currentStimulus) {
+        this.currentStimulus = currentStimulus;
+    }
+
+    /**
      * Recupera o valor de emitterComponent
+     *
      * @return emitterComponent
      */
     public ObjectSequentialNumber getEmitterComponent() {
@@ -120,6 +131,7 @@ public abstract class Stimulus {
 
     /**
      * Define o valor de emmiterComponent
+     *
      * @param emitterComponent Novo valor de emitterComponent
      */
     public void setEmitterComponent(ObjectSequentialNumber emitterComponent) {
@@ -128,6 +140,7 @@ public abstract class Stimulus {
 
     /**
      * Recupera o valor de intensity
+     *
      * @return intensity
      */
     public int getIntensity() {
@@ -136,6 +149,7 @@ public abstract class Stimulus {
 
     /**
      * Define o valor de intensity
+     *
      * @param intensity Novo valor de intensity
      */
     public void setIntensity(int intensity) {
@@ -143,15 +157,8 @@ public abstract class Stimulus {
     }
 
     /**
-     * Define o valor de currentStimulus
-     * @param currentStimulus Novo valor de currentStimulus
-     */
-    public void setCurrentStimulus(CurrentStimulus currentStimulus) {
-        this.currentStimulus = currentStimulus;
-    }
-
-    /**
      * Recupera o valor de target
+     *
      * @return target
      */
     public ObjectSequentialNumber getTarget() {
@@ -160,6 +167,7 @@ public abstract class Stimulus {
 
     /**
      * Define o valor de target
+     *
      * @param target Novo valor de target
      */
     public void setTarget(ObjectSequentialNumber target) {
@@ -169,6 +177,7 @@ public abstract class Stimulus {
 
     /**
      * Recupera o valor de stimulusValence
+     *
      * @return true se o estímulo for apetitivo e false se o estímulo for aversivo
      */
     public boolean isStimulusValence() {
@@ -177,6 +186,7 @@ public abstract class Stimulus {
 
     /**
      * Define o valor de stimulusValence
+     *
      * @param stimulusValence true para estímulos apetitivos e false para estímulos aversivos
      */
     public void setStimulusValence(boolean stimulusValence) {

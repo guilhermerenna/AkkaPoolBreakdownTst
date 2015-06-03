@@ -11,12 +11,14 @@ public interface Component {
 
     /**
      * Method responsible for feeling stimuli.
+     *
      * @return
      */
     public ArrayList<Stimulus> feelStimuli();
 
     /**
      * Method responsible for change the component state.
+     *
      * @param feltStimulli
      * @return
      */
@@ -24,6 +26,7 @@ public interface Component {
 
     /**
      * Method responsible for send the produced stimuli
+     *
      * @return
      */
     public void sendStimuli(ArrayList<Stimulus> producedStimuli);

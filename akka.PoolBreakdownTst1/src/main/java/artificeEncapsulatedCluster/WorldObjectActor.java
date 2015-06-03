@@ -1,10 +1,7 @@
 package artificeEncapsulatedCluster;
 
-import Creature.nervousSystem.electricalSignallingSystem.electricalStimulus.Stimulus;
-import akka.actor.ActorRef;
 import akka.actor.UntypedActor;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -12,15 +9,13 @@ import java.util.Random;
  */
 public abstract class WorldObjectActor extends UntypedActor {
     /**
-     * Identifier of the object
-     */
-    private ObjectSequentialNumber sequentialNumber;
-
-    /**
      * Auxiliary variables
      */
     public static Random generator = new Random();
-
+    /**
+     * Identifier of the object
+     */
+    private ObjectSequentialNumber sequentialNumber;
     private double positionX;
 
     private double positionY;
@@ -39,11 +34,11 @@ public abstract class WorldObjectActor extends UntypedActor {
     // private EnvStimuliPool env
 
     /**
-     *  atributos visiveis deste componente e referencia para o pool da interface
-     *  @deprecated
+     * atributos visiveis deste componente e referencia para o pool da interface
+     *
+     * @deprecated
      */
     //private LuminousStimulus myStimulus;
-
     public WorldObjectActor(ObjectSequentialNumber number, double positionX, double positionY, double positionZ) {
     }
 

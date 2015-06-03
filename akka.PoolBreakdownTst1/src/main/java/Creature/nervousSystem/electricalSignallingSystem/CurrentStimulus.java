@@ -9,21 +9,18 @@ import java.util.Hashtable;
  * Created by lsi on 28/05/15.
  */
 public class CurrentStimulus {
+    public static final int INVALID_VALUE = Integer.MIN_VALUE;
     private ActorRef emmiterComponent;
-
     private ArrayList<Perception> conjunto;
-
     //////////////////////
     private String action;
-    private String affect;
     //////////////////////
-
+    private String affect;
     private double angle;
     private double apathy;
     private double apathyNew;
     private double apathyOld;
     private double arousal;
-
     private double calory;
     private int chooseExperience;
     private String complexAffect;
@@ -70,12 +67,8 @@ public class CurrentStimulus {
     private String touched;
     private double value;
     private String vendo;
-
     private boolean salivating;
     private boolean shocked;
-
-    public static final int INVALID_VALUE = Integer.MIN_VALUE;
-
     private Hashtable<String, String> c;
 
     public CurrentStimulus() {
@@ -96,7 +89,7 @@ public class CurrentStimulus {
         calory = INVALID_VALUE;
         chooseExperience = 0;
         complexAffect = null;
-        //ContactWith n�o pode ser null deve ser NOTHING
+        //ContactWith nao pode ser null deve ser NOTHING
         contactWith = "NOTHING";
         curiosity = INVALID_VALUE;
         delta = INVALID_VALUE;
@@ -161,7 +154,6 @@ public class CurrentStimulus {
     }
 
     /**
-     *
      * @return
      */
     public synchronized Hashtable<String, String> getC() {
@@ -169,7 +161,6 @@ public class CurrentStimulus {
     }
 
     /**
-     *
      * @param c
      */
     public synchronized void setC(Hashtable<String, String> c) {
@@ -177,7 +168,6 @@ public class CurrentStimulus {
     }
 
     /**
-     *
      * @return
      */
     public synchronized ActorRef getEmmiterComponent() {
@@ -185,7 +175,6 @@ public class CurrentStimulus {
     }
 
     /**
-     *
      * @param emmiterComponent
      */
     public synchronized void setEmmiterComponent(
@@ -194,7 +183,6 @@ public class CurrentStimulus {
     }
 
     /**
-     *
      * @return
      */
     public synchronized ArrayList<Perception> getConjunto() {
@@ -202,7 +190,6 @@ public class CurrentStimulus {
     }
 
     /**
-     *
      * @param conjunto
      */
     public synchronized void setConjunto(ArrayList<Perception> conjunto) {
@@ -210,7 +197,6 @@ public class CurrentStimulus {
     }
 
     /**
-     *
      * @return
      */
     public synchronized String getAction() {
@@ -218,7 +204,6 @@ public class CurrentStimulus {
     }
 
     /**
-     *
      * @param action
      */
     public synchronized void setAction(String action) {
@@ -633,11 +618,11 @@ public class CurrentStimulus {
         this.vendo = vendo;
     }
 
-    public void setSmelling(String smelling) {
-        this.smelling = smelling;
-    }
-
     public String getSmelling() {
         return smelling;
+    }
+
+    public void setSmelling(String smelling) {
+        this.smelling = smelling;
     }
 }

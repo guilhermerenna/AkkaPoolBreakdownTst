@@ -1,5 +1,6 @@
 package artificeEncapsulatedCluster;
 
+import akka.PoolBreakdown.FruitActor;
 import akka.actor.*;
 
 //#frontend
@@ -36,7 +37,7 @@ public class ArtificeFrontend extends UntypedActor {
 
             System.out.println(getSender());
 
-            System.out.println(c.getXPosition() + ", " + c.getYPosition());
+            //System.out.println(c.getXPosition() + ", " + c.getYPosition());
         }
     }
 
