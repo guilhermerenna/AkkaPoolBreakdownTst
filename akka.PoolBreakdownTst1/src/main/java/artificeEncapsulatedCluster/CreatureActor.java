@@ -9,10 +9,23 @@ import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.routing.RoundRobinRouter;
 
-public class CreatureActor extends UntypedActor {
+public class CreatureActor extends WorldObjectActor {
     private final ActorRef mouth = getContext().actorOf(Props.create(MouthActor.class).withRouter(new RoundRobinRouter(5)), "mouth");
     private final ActorRef nose = getContext().actorOf(Props.create(NoseActor.class).withRouter(new RoundRobinRouter(5)), "nose");
     private final ActorRef eye = getContext().actorOf(Props.create(EyeActor.class).withRouter(new RoundRobinRouter(5)), "eye");
+
+    /**
+     * atributos visiveis deste componente e referencia para o pool da interface
+     *
+     * @param number
+     * @param positionX
+     * @param positionY
+     * @param positionZ
+     * @deprecated
+     */
+    public CreatureActor(ObjectSequentialNumber number, double x, double y, double z) {
+        super(number, x, y, z);
+    }
 
     public void preStart() {
         // TODO

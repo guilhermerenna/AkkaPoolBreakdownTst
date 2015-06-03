@@ -7,9 +7,11 @@ import akka.actor.Props;
 public class TypedActorsClusterApp {
     public static void main(String[] args) {
 
-        ActorSystem s = ActorSystem.create("System");
+        ActorSystem s = ActorSystem.create("ArtificeSystem");
 
         ActorRef frontend = s.actorOf(Props.create(ArtificeFrontend.class), "frontend");
+
+        frontend.tell("spike creature *",frontend);
 
 
     }
